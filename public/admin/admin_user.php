@@ -88,7 +88,7 @@ if (isset($_GET['delete'])) {
                             <th>Địa chỉ</th>
                             <th>Email</th>
                             <th>Hình ảnh</th>
-                            <!-- <th></th> -->
+                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -106,11 +106,11 @@ if (isset($_GET['delete'])) {
                                     <td><?= $htmlspecialchars($fetch_user['address']) ?></td>
                                     <td><?= $htmlspecialchars($fetch_user['email']) ?></td>
                                     <td><?= '<img src="../admin/upload/user_profile/' . $fetch_user['image'] . '" width="100px;" height="100px"; alt="">' ?> </td>
-                                    <!-- <td class="justify-content-center">
+                                    <td class="justify-content-center">
                                         <a href="edit_user.php?update_user=<?= $fetch_user['id']; ?>" class="btn btn-xs btn-warning">
                                             <i alt="Edit" class="fa fa-pencil"></i>Edit
                                         </a>
-                                    </td> -->
+                                    </td>
                                     <td class="justify-content-center">
                                         <form class="form-inline ml-1" action="admin_user.php?delete=<?= $fetch_user['id']; ?>" method="POST">
                                             <input type="hidden" name="id" value="">

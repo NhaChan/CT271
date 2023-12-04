@@ -15,6 +15,7 @@ ob_end_flush();
 
 $show_product = $pdo->query('SELECT * FROM products');
 $show_product->execute();
+
 if (isset($_POST['delete-product'])) {
     $product_id = $_POST['product_id'];
 
@@ -34,7 +35,7 @@ if (isset($_POST['delete-product'])) {
         }
 
         if (file_exists($detail_image_path)) {
-            unlink($detail_image_path);
+            // unlink($detail_image_path);
         }
     }
 

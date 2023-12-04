@@ -132,10 +132,6 @@ if (isset($_GET['delete'])) {
                                     </td>
                                     <td><a href="detail_order.php?order_id=<?= $fetch_order['id']; ?>">Xem chi tiết</a></td>
 
-                                    <!-- <a href="edit_staff.php?update_user=<?= $fetch_user['id']; ?>" class="btn btn-xs btn-warning">
-                                            <i alt="Edit" class="fa fa-pencil"></i>Edit
-                                        </a> -->
-
                                     <td class="justify-content-center">
                                         <form class="form-inline ml-1" action="admin_order.php?delete=<?= $fetch_order['id']; ?>" method="POST">
                                             <input type="hidden" name="uid" value="">

@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $status = 1;
 
         $query1 = 'INSERT INTO orders (uid, address, phone, paid, status, date) VALUES (?,?,?,?,?,?)';
-        $query2 = 'INSERT INTO product_detail (oid, pid, pdid, price, quanlity, pname) VALUES (?,?,?,?,?,?)'; //
+        $query2 = 'INSERT INTO product_detail (oid, pid, pdid, price, quanlity, pname) VALUES (?,?,?,?,?,?)';
 
         try {
             $stm_order = $pdo->prepare($query1);
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $length = count($pdids);
             $stm_pd = $pdo->prepare($query2);
             for ($i = 0; $i < $length; $i++) {
-                $stm_pd->execute([$oid[count($oid) - 1]['id'], $pid, $pdids[$i], $prices[$i], $quanlities[$i], $pname[$i]]); //
+                $stm_pd->execute([$oid[count($oid) - 1]['id'], $pid, $pdids[$i], $prices[$i], $quanlities[$i], $pname[$i]]);
             }
 
 

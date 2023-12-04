@@ -64,6 +64,38 @@ if (isset($message)) {
 if (isset($_GET['delete'])) {
 
     $delete_id = $_GET['delete'];
+    // $delete_message = $pdo->prepare("DELETE FROM `category` WHERE id = ?");
+    // $delete_message->execute([$delete_id]);
+
+    // Select images associated with the category
+    $select_images = $pdo->prepare("SELECT * FROM products, product_images WHERE products.id = product_images.product_id AND products.id = ?");
+    $select_images->execute([$delete_id]);
+    $images = $select_images->fetchAll(PDO::FETCH_ASSOC);
+
+    // Loop through each image and delete associated files
+    foreach ($images as $image) {
+        $detail_image_path = '../admin/upload/product_detail/' . $image['images'];
+        $product_image_path = '../admin/upload/top10laptop/' . $image['image'];
+
+        // Delete image files from the server if they exist
+        if (file_exists($product_image_path)) {
+            unlink($product_image_path);
+        }
+
+        if (file_exists($detail_image_path)) {
+            unlink($detail_image_path);
+        }
+    }
+
+    // Delete associated images from the product_images table
+    $delete_product_images = $pdo->prepare("DELETE FROM product_images WHERE product_id = ?");
+    $delete_product_images->execute([$delete_id]);
+
+    // Delete the products associated with the category
+    $delete_products = $pdo->prepare("DELETE FROM products WHERE category_id = ?");
+    $delete_products->execute([$delete_id]);
+
+    // Delete the category from the category table
     $delete_message = $pdo->prepare("DELETE FROM `category` WHERE id = ?");
     $delete_message->execute([$delete_id]);
 

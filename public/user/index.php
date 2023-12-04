@@ -454,7 +454,66 @@
                 </div>
             </div>
             <!-- End-Gaming -->
+            <?php
+            // Truy vấn dữ liệu
+            $stmt = $pdo->query('SELECT *, FORMAT(price, 0) as formatted_price FROM products WHERE category_id = 17');
+            $imgstm = $pdo->prepare('SELECT img FROM `category` WHERE id=17');
+            $imgstm->execute();
+            $img = $imgstm->fetch();
+            ?>
+            <div class="card border-0 mt-5" id="scrollspyHeading5">
+                <img src="../admin/upload/icon/<?php echo $img['img'] ?>" alt="">
+                <div class="card-body bg-light">
+                    <div class="cate-list my-3">
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <div class="owl-carousel owl-theme">
+                                    <?php
+                                    while ($row = $stmt->fetch()) {
+                                    ?>
+                                        <div class="item">
+                                            <div class="category-icon">
+                                                <div class="card border-0 p-2 detail-product frame-hv">
+                                                    <li>
+                                                        <a href="product_detail.php?id= <?php echo $row['id'] ?>">
+                                                            <img src="../admin/upload/top10laptop/<?php echo $row['image'] ?>" class="card-img-top img-hv" alt="...">
+                                                        </a>
+                                                    </li>
+                                                    <li class="advertise">
+                                                        <img style="width: 20px; height: 20px;" src="../image/title.png" alt="">
+                                                        <p>HSSV Giảm 500k</p>
+                                                    </li>
+                                                    <li>
+                                                        <button type="button" class="btn btn-light">8 GB</button>
+                                                        <button type="button" class="btn btn-light">SSD512 GB</button>
+                                                    </li>
+                                                    <li><?php echo $row['name'] ?></li>
+                                                    <li><a href=""><?php echo $row['formatted_price'] ?></a><sup>đ </sup><span><?php echo "-" .  $row['discount'] ?>%</span></li>
+                                                    <?php
+                                                    $current_price = $row['price'] - ($row['price'] * $row['discount'] / 100);
+                                                    ?>
+                                                    <li><?php echo number_format($current_price, 0, ',', '.') ?><sup>đ</sup></li>
+                                                    <li>Quà: <b>400.000</b><sup>đ</sup></li>
+                                                    <div class="card-footer text-center bg-warning-subtle border-0 text-warning ">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
+            </div>
             <!-- product_end -->
 
         </div>

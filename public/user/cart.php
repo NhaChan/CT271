@@ -45,6 +45,7 @@
     const pd = JSON.parse(localStorage.getItem(name));
     var total = 0;
 
+    //delete items
     const delFunc = (pid, price) => {
         // console.log(pid, price);
         pd.forEach((e, i) => {
@@ -64,7 +65,7 @@
             const td2 = document.createElement('td');
             const td3 = document.createElement('td');
             const td4 = document.createElement('td');
-            const td5 = document.createElement('td'); // Added for product name
+            const td5 = document.createElement('td');
             const btn = document.createElement('button');
             const img = document.createElement('img');
             const input = document.createElement('input');
@@ -83,7 +84,7 @@
 
             td1.append(input);
             td1.append(img);
-            td2.append(productName); // Added for product name
+            td2.append(productName);
             td3.append(quanlity);
             td4.append(price);
             btn.append(del);
@@ -95,7 +96,7 @@
             tr.append(td2);
             tr.append(td3);
             tr.append(td4);
-            tr.append(td5); // Added for the new column
+            tr.append(td5);
 
             table_tag.append(tr);
         })
